@@ -4,7 +4,7 @@
       <tr>
         <th>#</th>
         <th>Ícono</th>
-        <th>Bander</th>
+        <th>Bandera</th>
         <th>Nombre</th>
         <th>Capital</th>
         <th>Población</th>
@@ -12,7 +12,22 @@
       </tr>
     </thead>
     <tbody>
-      <tr></tr>
+      @for (country of countries(); track country.cca2; let index = $index) {
+        <tr>
+          <td>{{index + 1}}</td>
+          <td>{{country.flag}}</td>
+          <td>
+            <img [src]="country.flags.svg" [alt]="country.name.common"
+            class="w-10"
+            >
+          </td>
+          <td>{{country.name.common}}</td>
+          <td>{{country.capital[0]}}</td>
+          <td>{{country.population}}</td>
+          <td><a class="link-primary" href="">Más información</a></td>
+
+      }
+
     </tbody>
   </table>
 </section>
