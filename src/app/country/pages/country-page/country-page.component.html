@@ -1,8 +1,13 @@
+<!-- Error  -->
+@if (isError()) {
+  <app-not-found/>
+}
 <!--  -->
-
-
+@if (isLoading()) {
+  <h1 class="text-3xl animate-spin">Cargando...</h1>
+}
 <!--  -->
+@if (country()) {
+ <country-information-page [country]="country()!"/>
+}
 
-<p>country-page works!</p>
-
-<h3>Nombre: {{country()?.name}}</h3>

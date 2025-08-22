@@ -1,0 +1,23 @@
+<section class="flex flex-col items-center justify-center mt-10 text-center">
+  <!-- Icono de advertencia -->
+  <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-500 mb-4">
+    <circle cx="12" cy="12" r="10"></circle>
+    <line x1="12" y1="8" x2="12" y2="12"></line>
+    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+  </svg>
+
+  <!-- Mensaje de error -->
+  <h1 class="text-2xl font-bold text-gray-800 mb-2">
+    No se encontró el país
+  </h1>
+  <p class="text-gray-600 mb-6">
+    Puede que el código ingresado sea incorrecto o que el país no exista.
+  </p>
+
+  <!-- Botón de regreso -->
+  <a (click)="goBack()"
+    class="px-6 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition cursor-pointer">
+    Regresar
+  </a>
+</section>
