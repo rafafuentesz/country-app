@@ -2,7 +2,6 @@ import { Component, inject, signal } from '@angular/core';
 import { SearchInputComponent } from '../../components/search-input/search-input.component';
 import { CountryListComponent } from '../../components/country-list/country-list.component';
 import { CountryService } from '../../services/country.service';
-import { RESTCountry } from '../../interfaces/rest-countries.interface';
 import { Country } from '../../interfaces/country.interface';
 
 @Component({
@@ -22,10 +21,17 @@ export class ByCapitalPageComponent {
     this.isLoading.set(true);
     this.isError.set(null);
 
-    this.CountryService.searchByCapital(query).subscribe((countries) => {
-      this.isLoading.set(false);
-      this.countries.set(countries);
-      console.log({ countries });
+    this.CountryService.searchByCapital(query).subscribe({
+      next:(countries) => {
+        this.isLoading.set(false);
+        this.countries.set(countries);
+        console.log({ countries });
+      },
+      error: (err) => {
+        this.isLoading.set(false);
+        this.countries.set([]);
+        this.isError.set(err);
+      }
     });
   }
 }
