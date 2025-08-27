@@ -1,4 +1,12 @@
-import { Component, EventEmitter, input, output, Output } from '@angular/core';
+import {
+  Component,
+  effect,
+  EventEmitter,
+  input,
+  output,
+  Output,
+  signal,
+} from '@angular/core';
 
 @Component({
   selector: 'country-search-input',
@@ -6,12 +14,17 @@ import { Component, EventEmitter, input, output, Output } from '@angular/core';
   templateUrl: './search-input.component.html',
 })
 export class SearchInputComponent {
-placeholder = input('Buscar')
-value = output<string>();
+  placeholder = input('Buscar');
+  value = output<string>();
+  debounceTime = input<number>(300);
+  inputValue = signal<string>('');
 
+  debounceEffect = effect((onCleanup) => {
+    const value = this.inputValue();
+    const timeout = setTimeout(() => {
+      this.value.emit(value);
+    }, this.debounceTime());
 
-// //emitir evento a traves de un input
-// onSearch(value:string){
-//     this.value.emit(value);
-//   }
+    onCleanup(() => clearTimeout(timeout));
+  });
 }
