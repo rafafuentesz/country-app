@@ -1,5 +1,21 @@
+<div class="flex flex-row gap-2">
+  @for (region of regions; track $index) {
+    <button
+      (click)="onSearchByRegion(region)"
+      class="btn"
+      [ngClass]="{
+        'btn-neutral': activeRegion() !== region,
+        'btn-active': activeRegion() === region
+      }"
+    >
+      {{ region | titlecase }}
+    </button>
+  }
+</div>
 
-
-<!-- country-list  -->
-
-<country-list [countries]="[]"/>
+<country-list
+  [countries]="countries()"
+  [errorMessage]="isError()"
+  [isLoading]="isLoading()"
+  [isEmpty]="countries().length === 0"
+/>
