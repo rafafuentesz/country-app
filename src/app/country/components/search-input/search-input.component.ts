@@ -3,6 +3,7 @@ import {
   effect,
   EventEmitter,
   input,
+  linkedSignal,
   output,
   Output,
   signal,
@@ -16,8 +17,9 @@ import {
 export class SearchInputComponent {
   placeholder = input('Buscar');
   value = output<string>();
-  debounceTime = input<number>(300);
-  inputValue = signal<string>('');
+  debounceTime = input<number>(1000);
+  initialValue = input<string>('');
+  inputValue = linkedSignal<string>(() =>this.initialValue() ?? '');
 
   debounceEffect = effect((onCleanup) => {
     const value = this.inputValue();
