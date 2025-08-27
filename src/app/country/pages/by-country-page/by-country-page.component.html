@@ -1,5 +1,9 @@
 <!-- search-input -->
-<country-search-input placeholder="Buscar por pais" (value)="onSearchByCountry($event)"/>
+<country-search-input
+placeholder="Buscar por pais"
+(value)="onSearchByCountry($event)"
+[debounceTime]="300"
+/>
 
 <!-- country-list  -->
 
