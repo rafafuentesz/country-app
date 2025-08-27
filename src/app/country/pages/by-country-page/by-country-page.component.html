@@ -3,6 +3,7 @@
 placeholder="Buscar por pais"
 (value)="onSearchByCountry($event)"
 [debounceTime]="300"
+[initialValue]="query()"
 />
 
 <!-- country-list  -->
